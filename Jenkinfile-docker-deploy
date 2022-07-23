@@ -83,7 +83,7 @@ stages {
      }
     stage('Validation and Rollback') {
             steps {
-             sh label: '', script: '''sleep 30
+             sh label: '', script: '''sleep 120
                                         status_code=$(curl --write-out %{http_code} --silent --output /dev/null http://13.233.108.92:30005/gameoflifes/)
                                         if [[ "$status_code" -ne 200 ]] ; then
                                             echo "Deployment has some problem - $status_code"
