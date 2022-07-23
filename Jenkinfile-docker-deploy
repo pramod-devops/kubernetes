@@ -84,12 +84,12 @@ stages {
     stage('Validation and Rollback') {
             steps {
              sh label: '', script: '''sleep 30
-                                        status_code=$(curl --write-out %{http_code} --silent --output /dev/null http://18.117.173.62:30005/gameoflifes/)
+                                        status_code=$(curl --write-out %{http_code} --silent --output /dev/null http://13.233.108.92:30005/gameoflifes/)
                                         if [[ "$status_code" -ne 200 ]] ; then
                                             echo "Deployment has some problem - $status_code"
-                                            ssh jenkins@18.117.173.62 kubectl rollout undo deployment/sample-deploy
+                                            ssh jenkins@13.233.108.92 kubectl rollout undo deployment/sample-deploy
                                         else
-                                            ssh jenkins@18.117.173.62 kubectl rollout  status deployment/sample-deploy
+                                            ssh jenkins@13.233.108.92 kubectl rollout  status deployment/sample-deploy
                                         fi
                                     '''
            
